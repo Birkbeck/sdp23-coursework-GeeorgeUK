@@ -30,6 +30,8 @@ public class Main {
 		}
 		catch (IOException e) {
 			System.out.println("Error reading the program from " + args[0]);
+			//Temporarily adding the stacktrace for debugging purposes will assist with development.
+			e.printStackTrace();
 		}
 	}
 }

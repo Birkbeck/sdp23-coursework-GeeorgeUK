@@ -19,7 +19,6 @@ class AddInstructionTest {
   void setUp() {
     machine = new Machine(new Registers());
     registers = machine.getRegisters();
-    //...
   }
 
   @AfterEach
@@ -44,5 +43,14 @@ class AddInstructionTest {
     Instruction instruction = new AddInstruction(null, EAX, EBX);
     instruction.execute(machine);
     Assertions.assertEquals(1, machine.getRegisters().get(EAX));
+  }
+
+  @Test
+  void executeValidWithLabel() {
+    registers.set(EAX, 1);
+    registers.set(EBX, 1);
+    Instruction instruction = new AddInstruction("labelled", EAX, EBX);
+    instruction.execute(machine);
+    Assertions.assertEquals(2, machine.getRegisters().get(EAX));
   }
 }

@@ -57,7 +57,6 @@ public final class Machine {
 		return this.registers;
 	}
 
-
 	/**
 	 * String representation of the program under execution.
 	 *

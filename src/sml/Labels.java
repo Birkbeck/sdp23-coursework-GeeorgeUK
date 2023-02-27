@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-// TODO: write a JavaDoc for the class
-
 /**
- *
- * @author ...
+ * Represents the labels, an optional way to identify an instruction.
+ * <p>
+ * A label can be referenced by a separate instruction to
+ * jump to the associated instruction.
  */
 public final class Labels {
 	private final Map<String, Integer> labels = new HashMap<>();

@@ -4,10 +4,10 @@ import sml.Instruction;
 import sml.Machine;
 import sml.RegisterName;
 
-// TODO: write a JavaDoc for the class
-
-/**
- * @author
+/** <b>Represents an ADD instruction.</b><p>
+ * An add instruction sums the contents of register A and register B,
+ * storing the total result back into register A.
+ * @author gburto03
  */
 
 public class AddInstruction extends Instruction {
