@@ -39,27 +39,27 @@ class OutInstructionTest {
     void tearDown() {
         machine = null;
         registers = null;
+
         // We want to reset our output back to its original value.
         System.setOut(defaultOut);
     }
 
     @Test
-    void executeValid() {
+    void testSout() {
         registers.set(EAX, 5);
         Instruction instruction = new OutInstruction(null, EAX);
         instruction.execute(machine);
-        /* Convert the out data to a string. sout automatically
+        /* Converts the out data to a string. sout automatically
         applies a new line character after each entry,
-        so we need to consider this in our comparison. */
+        so we need to consider this character in our comparison.*/
         Assertions.assertEquals("5\n", outData.toString());
     }
 
     @Test
-    void executeValidWithLabel() {
+    void testSoutWithLabel() {
         registers.set(EAX, 1337);
         Instruction instruction = new OutInstruction("labelled\n", EAX);
         instruction.execute(machine);
-        // Same process as explained in the above.
         Assertions.assertEquals("1337\n", outData.toString());
     }
 }

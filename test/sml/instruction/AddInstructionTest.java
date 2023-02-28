@@ -28,7 +28,7 @@ class AddInstructionTest {
   }
 
   @Test
-  void executeValid() {
+  void testTwoPostives() {
     registers.set(EAX, 5);
     registers.set(EBX, 6);
     Instruction instruction = new AddInstruction(null, EAX, EBX);
@@ -37,7 +37,7 @@ class AddInstructionTest {
   }
 
   @Test
-  void executeValidTwo() {
+  void testOneNegative() {
     registers.set(EAX, -5);
     registers.set(EBX, 6);
     Instruction instruction = new AddInstruction(null, EAX, EBX);
@@ -46,11 +46,20 @@ class AddInstructionTest {
   }
 
   @Test
-  void executeValidWithLabel() {
+  void testWithLabel() {
     registers.set(EAX, 1);
     registers.set(EBX, 1);
     Instruction instruction = new AddInstruction("labelled", EAX, EBX);
     instruction.execute(machine);
     Assertions.assertEquals(2, machine.getRegisters().get(EAX));
+  }
+
+  @Test
+  void testTwoNegatives() {
+    registers.set(EAX, -10);
+    registers.set(EBX, -10);
+    Instruction instruction = new AddInstruction("yaya", EAX, EBX);
+    instruction.execute(machine);
+    Assertions.assertEquals(-20, machine.getRegisters().get(EAX));
   }
 }

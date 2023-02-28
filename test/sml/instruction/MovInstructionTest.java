@@ -28,14 +28,14 @@ class MovInstructionTest {
     }
 
     @Test
-    void executeValid() {
+    void testMov() {
         Instruction instruction = new MovInstruction(null, EAX, 5);
         instruction.execute(machine);
         Assertions.assertEquals(5, machine.getRegisters().get(EAX));
     }
 
     @Test
-    void executeValidMultiple() {
+    void testMovOverwrite() {
         Instruction instruction = new MovInstruction(null, EAX, 3);
         instruction.execute(machine);
         Instruction instruction1 = new MovInstruction(null, EAX,5);
@@ -44,9 +44,25 @@ class MovInstructionTest {
     }
 
     @Test
-    void executeValidLabelled() {
+    void testMovWithLabel() {
         Instruction instruction = new MovInstruction("this_is_a_label", EAX, 1);
         instruction.execute(machine);
         Assertions.assertEquals(1, machine.getRegisters().get(EAX));
+    }
+
+    @Test
+    void testMovFromRegister() {
+        machine.getRegisters().set(EBX, 10);
+        Instruction instruction = new MovInstruction(null, EAX, EBX);
+        instruction.execute(machine);
+        Assertions.assertEquals(10, machine.getRegisters().get(EAX));
+    }
+
+    @Test
+    void testMovFromRegisterDoesNotRemoveOldRegister() {
+        machine.getRegisters().set(EBX, 10);
+        Instruction instruction = new MovInstruction(null, EAX, EBX);
+        instruction.execute(machine);
+        Assertions.assertEquals(10, machine.getRegisters().get(EBX));
     }
 }

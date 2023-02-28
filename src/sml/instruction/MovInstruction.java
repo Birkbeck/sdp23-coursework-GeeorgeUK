@@ -13,20 +13,32 @@ import sml.RegisterName;
  */
 public class MovInstruction extends Instruction {
     private final RegisterName register;
-    private final Integer value;
+    private Integer value;
+    private RegisterName source;
 
     public static final String OP_CODE = "mov";
 
-    // Initialises the MOV instruction.
+    // Initialises the MOV instruction for adding a value to a register.
     public MovInstruction(String label, RegisterName register, Integer value) {
         super(label, OP_CODE);
         this.register = register;
         this.value = value;
     }
 
+    // Initialises the MOV instruction for copying a register to a register.
+    public MovInstruction(String label, RegisterName register, RegisterName source) {
+        super(label, OP_CODE);
+        this.register = register;
+        this.source = source;
+    }
+
     @Override
     public int execute(Machine m) {
-        m.getRegisters().set(register, value);
+        if (source == null && value != null) {
+            m.getRegisters().set(register, value);
+        } else {
+            m.getRegisters().set(register, m.getRegisters().get(source));
+        }
         return NORMAL_PROGRAM_COUNTER_UPDATE;
     }
 
