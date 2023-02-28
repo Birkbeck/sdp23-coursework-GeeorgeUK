@@ -76,6 +76,11 @@ public final class Translator {
                 String s = scan();
                 return new OutInstruction(label, Register.valueOf(s));
             }
+            case MovInstruction.OP_CODE -> {
+                String s = scan();
+                String i = scan();
+                return new MovInstruction(label, Register.valueOf(s), Integer.valueOf(i));
+            }
 
             // TODO: add code for all other types of instructions
 
