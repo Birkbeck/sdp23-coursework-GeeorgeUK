@@ -4,30 +4,49 @@ import sml.Instruction;
 import sml.Machine;
 import sml.RegisterName;
 
-//TODO: write a JavaDoc for this class.
-
 /**
- * @author
+ * <h1>OutInstruction</h1>
+ * <p>A subclass of <b>Instruction</b>, an <b>output</b> or <b>OUT</b> instruction
+ * displays the value stored in the register to the standard console output.</p>
+ * @author gburto03
  */
-
 public class OutInstruction extends Instruction {
-    private final RegisterName register;
+  private final RegisterName source;
 
-    public static final String OP_CODE = "out";
+  public static final String OP_CODE = "out";
 
-    public OutInstruction(String label, RegisterName register) {
-        super(label, OP_CODE);
-        this.register = register;
-    }
+  /**
+   * This method initialises the OutInstruction class.
+   *
+   * @param label    An optional string label.
+   * @param source   The source register.
+   *                 This is where the value we want to print is stored.
+   * @author gburto03
+   */
+  public OutInstruction(String label, RegisterName source) {
+    super(label, OP_CODE);
+    this.source = source;
+  }
 
-    @Override
-    public int execute(Machine m) {
-        System.out.println(m.getRegisters().get(register));
-        return NORMAL_PROGRAM_COUNTER_UPDATE;
-    }
+  /**
+   * This method overrides the abstract method for the output instruction.
+   *
+   * @param machine The machine in which we execute this instruction.
+   * @return Returns an integer representing the program counter update.
+   * @author gburto03
+   */
+  @Override
+  public int execute(Machine machine) {
+    System.out.println(machine.getRegisters().get(source));
+    return NORMAL_PROGRAM_COUNTER_UPDATE;
+  }
 
-    @Override
-    public String toString() {
-        return getLabelString() + getOpcode() + " " + register;
-    }
+  /**
+   * @return A string containing the label (if applicable), the opcode, and the source.
+   * @author gburto03
+   */
+  @Override
+  public String toString() {
+    return getLabelString() + getOpcode() + " " + source;
+  }
 }

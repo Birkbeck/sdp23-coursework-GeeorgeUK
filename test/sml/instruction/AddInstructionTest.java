@@ -28,7 +28,7 @@ class AddInstructionTest {
   }
 
   @Test
-  void testTwoPostives() {
+  void testTwoPositives() {
     registers.set(EAX, 5);
     registers.set(EBX, 6);
     Instruction instruction = new AddInstruction(null, EAX, EBX);
