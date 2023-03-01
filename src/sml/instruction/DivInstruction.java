@@ -59,11 +59,23 @@ public class DivInstruction extends Instruction {
     return getLabelString() + getOpcode() + " " + source + " " + modifier;
   }
 
+  /**
+   * Overrides the hashcode to include source and modifier.
+   * This ensures we can effectively compare two different add instructions.
+   * @return A unique integer for comparison
+   * @author gburto03
+   */
   @Override
   public int hashCode() {
     return Objects.hash(getLabel(), getOpcode(), this.source, this.modifier);
   }
 
+  /**
+   * Overrides the equals in this subclass.
+   * @param o The object to compare
+   * @return If this object is equal to o
+   * @author gburto03
+   */
   @Override
   public boolean equals(Object o) {
     if (o instanceof DivInstruction other) {

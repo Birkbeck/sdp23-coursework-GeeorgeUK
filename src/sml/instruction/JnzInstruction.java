@@ -75,4 +75,32 @@ public class JnzInstruction extends Instruction {
   public String toString() {
     return getLabelString() + getOpcode() + " " + source + " " + destination;
   }
+
+  /**
+   * Overrides the hashcode to include source and modifier.
+   * This ensures we can effectively compare two different add instructions.
+   * @return A unique integer for comparison
+   * @author gburto03
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(getLabel(), getOpcode(), this.source, this.destination);
+  }
+
+  /**
+   * Overrides the equals in this subclass.
+   * @param o The object to compare
+   * @return If this object is equal to o
+   * @author gburto03
+   */
+  @Override
+  public boolean equals(Object o) {
+    if (o instanceof JnzInstruction other) {
+      return Objects.equals(this.getLabel(), other.getLabel())
+              && Objects.equals(this.getOpcode(), other.getOpcode())
+              && Objects.equals(this.source, other.source)
+              && Objects.equals(this.destination, other.destination);
+    }
+    return false;
+  }
 }

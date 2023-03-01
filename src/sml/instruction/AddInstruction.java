@@ -70,7 +70,7 @@ public class AddInstruction extends Instruction {
   }
 
   /**
-   * Overrides the equals
+   * Overrides the equals in this subclass.
    * @param o The object to compare
    * @return If this object is equal to o
    * @author gburto03
