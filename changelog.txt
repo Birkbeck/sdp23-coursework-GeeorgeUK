@@ -1,3 +1,14 @@
+Changelog for 1.0-alpha12:
++ Added equals() and hashCode() to OutInstruction.
++ Added testing for equals and hashCode for the above.
++ Added javadoc comments to Registers.java.
++ Completed some TODO tasks:
+ > Implemented equals and hashCode in Labels.java.
+ > Implemented a duplicate labels checker to addLabel.
+ > Implemented another pattern matching task.
++ Added some label comparison tests.
+* Fixed some missing additional empty lines to the end of files.
+
 Changelog for 1.0-alpha11:
 + Added equals() and hashCode() to MulInstruction.
 + Added equals() and hashCode() to SubInstruction.

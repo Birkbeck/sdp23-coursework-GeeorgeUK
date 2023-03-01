@@ -11,11 +11,11 @@ import java.util.Scanner;
 import static sml.Registers.Register;
 
 /**
- * This class ....
- * <p>
- * The translator of a <b>S</b><b>M</b>al<b>L</b> program.
+ * <h1>Translator</h1>
+ * <p>The translator method converts a text file of written plaintext instructions
+ * into a series of machine readable instructions.</p>
  *
- * @author ...
+ * @author gburto03
  */
 public final class Translator {
 
@@ -103,9 +103,11 @@ public final class Translator {
       }
 
       // TODO: Then, replace the switch by using the Reflection API
+      // (in part 2!)
 
       // TODO: Next, use dependency injection to allow this machine class
       //       to work with different sets of opcodes (different CPUs)
+      // (also a part 2 bit)
 
       default -> {
         System.out.println("Unknown instruction: " + opcode);

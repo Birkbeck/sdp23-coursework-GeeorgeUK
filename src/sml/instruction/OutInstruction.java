@@ -4,6 +4,8 @@ import sml.Instruction;
 import sml.Machine;
 import sml.RegisterName;
 
+import java.util.Objects;
+
 /**
  * <h1>OutInstruction</h1>
  * <p>A subclass of <b>Instruction</b>, an <b>output</b> or <b>OUT</b> instruction
@@ -48,5 +50,32 @@ public class OutInstruction extends Instruction {
   @Override
   public String toString() {
     return getLabelString() + getOpcode() + " " + source;
+  }
+
+  /**
+   * Overrides the hashcode to include source and modifier.
+   * This ensures we can effectively compare two different instructions.
+   * @return A unique integer for comparison
+   * @author gburto03
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(getLabel(), getOpcode(), this.source);
+  }
+
+  /**
+   * Overrides the equals in this subclass.
+   * @param o The object to compare
+   * @return If this object is equal to o
+   * @author gburto03
+   */
+  @Override
+  public boolean equals(Object o) {
+    if (o instanceof OutInstruction other) {
+      return Objects.equals(this.getLabel(), other.getLabel())
+              && Objects.equals(this.getOpcode(), other.getOpcode())
+              && Objects.equals(this.source, other.source);
+    }
+    return false;
   }
 }

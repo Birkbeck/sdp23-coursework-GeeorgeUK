@@ -57,6 +57,7 @@ public class SubInstruction extends Instruction {
   public String toString() {
     return getLabelString() + getOpcode() + " " + source + " " + modifier;
   }
+
   /**
    * Overrides the hashcode to include source and modifier.
    * This ensures we can effectively compare two different instructions.

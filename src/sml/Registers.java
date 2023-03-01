@@ -3,10 +3,10 @@ package sml;
 import java.util.*;
 import java.util.stream.Collectors;
 
-// TODO: write a JavaDoc for the class
-
 /**
- * @author ...
+ * <h1>Registers</h1>
+ * <p>The Registers class is used to create and log different registers.</p>
+ * @author gburto03
  */
 public final class Registers {
   private final Map<Register, Integer> registers = new HashMap<>();
@@ -44,22 +44,33 @@ public final class Registers {
     return registers.get((Register) register);
   }
 
-  // TODO: use pattern matching for instanceof
-  // https://docs.oracle.com/en/java/javase/14/language/pattern-matching-instanceof-operator.html
+  /**
+   * Overrides the equals method to compare with other objects.
+   * @param o The other register to compare with.
+   * @return A boolean result of whether the two are equal.
+   * @author gburto03
+   */
   @Override
   public boolean equals(Object o) {
-    if (o instanceof Registers) {
-      Registers other = (Registers) o;
+    if (o instanceof Registers other) {
       return registers.equals(other.registers);
     }
     return false;
   }
 
+  /**
+   * @return A unique integer for this instance.
+   * @author gburto03
+   */
   @Override
   public int hashCode() {
     return registers.hashCode();
   }
 
+  /**
+   * Gets a formatted string representation of this register.
+   * @return A string representation of the register.
+   */
   @Override
   public String toString() {
     return registers.entrySet().stream()
