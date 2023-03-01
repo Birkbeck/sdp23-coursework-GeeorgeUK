@@ -35,11 +35,20 @@ class LabelsEqualsTest {
   }
 
   @Test
-  void testLabelsNWithNoEquals() {
+  void testLabelsWithNoEquals() {
     Labels labels0 = new Labels();
     Labels labels1 = new Labels();
     labels0.addLabel("hello", 1);
     labels1.addLabel("world", 2);
     Assertions.assertNotEquals(labels0, labels1);
+  }
+
+  @Test
+  void testLabelsStringDisplaysProperly() {
+    Labels labels = new Labels();
+    labels.addLabel("hello", 1);
+    labels.addLabel("world", 2);
+    Assertions.assertEquals("[hello -> 1, world -> 2]",
+            labels.toString());
   }
 }
