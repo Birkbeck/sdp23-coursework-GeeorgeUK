@@ -1,13 +1,12 @@
 package sml;
 
-import java.util.ArrayList;
-
-// TODO: write a JavaDoc for the class
+import java.util.Objects;
 
 /**
- * Represents an abstract instruction.
- *
- * @author ...
+ * <h1>Instruction</h1>
+ * <p>Represents an abstract instruction.</p>
+ * <p>This should not be instanced directly, but extended for different instructions.</p>
+ * @author gburto03
  */
 public abstract class Instruction {
   protected final String label;
@@ -51,14 +50,43 @@ public abstract class Instruction {
     return (getLabel() == null) ? "" : getLabel() + ": ";
   }
 
-	/* <b>Abstract Class</b><p>
-	  An abstract class allows protection of certain attributes and methods in a class.
-	  This is done for security reasons, as it can hide attributes we don't want people
-	  to see in most situations while still allowing internal use of the data.
- 	 */
+  /*
+   <h1>Abstract Class</h1>
+   <p>An abstract class allows protection of certain attributes and methods in a class.
+   This is done for security reasons, as it can hide attributes we don't want people
+   to see in most situations while still allowing internal use of the data.</p>
+   @author gburto03
+  */
 
+  /**
+   * @return A formatted version of the instruction
+   */
   @Override
   public abstract String toString();
 
-  // TODO: Make sure that subclasses also implement equals and hashCode (needed in class Machine).
+  /**
+   * Compares this instruction with another object.
+   *
+   * @param o The object to compare.
+   * @return Whether the object is equal to this host.
+   */
+  @Override
+  public boolean equals(Object o) {
+    if (o == null) { return false; }
+    if (o instanceof Instruction other) {
+      return Objects.equals(this.getLabel(), other.getLabel())
+              && Objects.equals(this.getOpcode(), other.getOpcode());
+    }
+    return false;
+  }
+
+  /**
+   * Creates a identifier hashcode based on the contents
+   * @return An integer based on the passed criteria.
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(getLabel(), getOpcode());
+  }
+
 }
