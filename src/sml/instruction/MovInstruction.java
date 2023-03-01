@@ -4,6 +4,8 @@ import sml.Instruction;
 import sml.Machine;
 import sml.RegisterName;
 
+import java.util.Objects;
+
 /**
  * <h1>MovInstruction</h1>
  * <p>A subclass of <b>Instruction</b>, a <b>move</b> or <b>MOV</b> instruction
@@ -59,6 +61,7 @@ public class MovInstruction extends Instruction {
       machine.getRegisters().set(source, value);
     } else if (modifier != null && value == null) {
       machine.getRegisters().set(source, machine.getRegisters().get(modifier));
+      value = machine.getRegisters().get(modifier);
     }
     return NORMAL_PROGRAM_COUNTER_UPDATE;
   }
@@ -74,5 +77,34 @@ public class MovInstruction extends Instruction {
       return getLabelString() + getOpcode() + " " + source + " " + value.toString();
     }
     return getLabelString() + getOpcode() + " " + source + " " + modifier.toString();
+  }
+
+  /**
+   * Overrides the hashcode to include source and modifier and value.
+   * This ensures we can effectively compare two different instructions.
+   * @return A unique integer for comparison
+   * @author gburto03
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(getLabel(), getOpcode(), this.source, this.modifier, this.value);
+  }
+
+  /**
+   * Overrides the equals in this subclass.
+   * @param o The object to compare
+   * @return If this object is equal to o
+   * @author gburto03
+   */
+  @Override
+  public boolean equals(Object o) {
+    if (o instanceof MovInstruction other) {
+      return Objects.equals(this.getLabel(), other.getLabel())
+              && Objects.equals(this.getOpcode(), other.getOpcode())
+              && Objects.equals(this.source, other.source)
+              && Objects.equals(this.modifier, other.modifier)
+              && Objects.equals(this.value, other.value);
+    }
+    return false;
   }
 }

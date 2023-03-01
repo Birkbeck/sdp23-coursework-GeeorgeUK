@@ -60,7 +60,7 @@ public class AddInstruction extends Instruction {
 
   /**
    * Overrides the hashcode to include source and modifier.
-   * This ensures we can effectively compare two different add instructions.
+   * This ensures we can effectively compare two different instructions.
    * @return A unique integer for comparison
    * @author gburto03
    */
