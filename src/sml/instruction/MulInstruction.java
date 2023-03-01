@@ -4,6 +4,8 @@ import sml.Instruction;
 import sml.Machine;
 import sml.RegisterName;
 
+import java.util.Objects;
+
 /**
  * <h1>MulInstruction</h1>
  * <p>A subclass of <b>Instruction</b>, a <b>multiply</b> or <b>MUL</b> instruction
@@ -54,5 +56,33 @@ public class MulInstruction extends Instruction {
   @Override
   public String toString() {
     return getLabelString() + getOpcode() + " " + source + " " + modifier;
+  }
+
+  /**
+   * Overrides the hashcode to include source and modifier.
+   * This ensures we can effectively compare two different instructions.
+   * @return A unique integer for comparison
+   * @author gburto03
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(getLabel(), getOpcode(), this.source, this.modifier);
+  }
+
+  /**
+   * Overrides the equals in this subclass.
+   * @param o The object to compare
+   * @return If this object is equal to o
+   * @author gburto03
+   */
+  @Override
+  public boolean equals(Object o) {
+    if (o instanceof MulInstruction other) {
+      return Objects.equals(this.getLabel(), other.getLabel())
+              && Objects.equals(this.getOpcode(), other.getOpcode())
+              && Objects.equals(this.source, other.source)
+              && Objects.equals(this.modifier, other.modifier);
+    }
+    return false;
   }
 }

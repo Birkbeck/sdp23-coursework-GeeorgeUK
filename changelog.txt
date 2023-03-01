@@ -1,13 +1,18 @@
+Changelog for 1.0-alpha11:
++ Added equals() and hashCode() to MulInstruction.
++ Added equals() and hashCode() to SubInstruction.
++ Added testing for equals and hashCode for the above.
+
 Changelog for 1.0-alpha10:
-+ Added equals() and hashCode() to MovInstruction
-+ Added testing for equals and hashCode in MovInstruction
++ Added equals() and hashCode() to MovInstruction.
++ Added testing for equals and hashCode in MovInstruction.
 * Minor tweaks to javadoc wordings.
 
 Changelog for 1.0-alpha9:
-+ Added the hashCode() override to JnzInstruction
-+ Added the equals() override to JnzInstruction
-+ Added test cases for equals in JnzInstruction
-* Fixes a few missing Javadocs for equals and hashmap
++ Added the hashCode() override to JnzInstruction.
++ Added the equals() override to JnzInstruction.
++ Added test cases for equals in JnzInstruction.
+* Fixes a few missing Javadocs for equals and hashmap.
 
 Changelog for 1.0-alpha8:
 + Extended the hashCode() method in DivInstruction.
@@ -36,7 +41,7 @@ Changelog for 1.0-alpha5:
 * Modified some classes to comply with the style guide:
  > Comply with alphabetical sorting of methods where appropriate.
  > Comply with the additional blank space at the end of each file. 
- > Scan variables in Translator.java now match with the variable names in each instruction subclass,  and are given a more appropriate name.
+ > Scan variables in Translator.java now match with the variable names in each instruction subclass, and are given a more appropriate name.
  > Comply with the code block indentation standard across all files.
 - Removed block comments from code blocks.
 
