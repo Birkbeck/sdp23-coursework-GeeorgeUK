@@ -1,0 +1,88 @@
+Changelog for 1.0-release:
++ Completed part 1:
+ > Completed toString() in Labels.java.
+ > Added test case for the above.
+THIS MEANS PART 1 OF THE COURSEWORK IS COMPLETE.
+
+Changelog for 1.0-alpha12:
++ Added equals() and hashCode() to OutInstruction.
++ Added testing for equals and hashCode for the above.
++ Added javadoc comments to Registers.java.
++ Completed some TODO tasks:
+ > Implemented equals and hashCode in Labels.java.
+ > Implemented a duplicate labels checker to addLabel.
+ > Implemented another pattern matching task.
++ Added some label comparison tests.
+* Fixed some missing additional empty lines to the end of files.
+
+Changelog for 1.0-alpha11:
++ Added equals() and hashCode() to MulInstruction.
++ Added equals() and hashCode() to SubInstruction.
++ Added testing for equals and hashCode for the above.
+
+Changelog for 1.0-alpha10:
++ Added equals() and hashCode() to MovInstruction.
++ Added testing for equals and hashCode in MovInstruction.
+* Minor tweaks to javadoc wordings.
+
+Changelog for 1.0-alpha9:
++ Added the hashCode() override to JnzInstruction.
++ Added the equals() override to JnzInstruction.
++ Added test cases for equals in JnzInstruction.
+* Fixes a few missing Javadocs for equals and hashmap.
+
+Changelog for 1.0-alpha8:
++ Extended the hashCode() method in DivInstruction.
++ Extended the equals() method in DivInstruction.
++ Created some test cases for Div.
++ Created a joint test case for comparing Add and Div.
+
+Changelog for 1.0-alpha7:
++ Completed javadocs for the Instruction class.
++ Added a basic hashCode() method to Instruction.
++ Extended the hashCode() method in AddInstruction.
++ Added a basic equals() method to Instruction.
++ Extended the equals() method in AddInstruction.
++ Created some test cases for AddInstruction.
+
+Changelog for 1.0-alpha6:
++ Added Changelog file to the repo, so we can see what has changed between pushes in the dev branch.
++ Added the JNZ instruction subclass, which uses a stream to iterate across instructions.
++ Added some tests for the JNZ instruction subclass.
++ Added javadocs for the JNZ instruction subclass.
+
+Changelog for 1.0-alpha5:
++ Added and implemented the DIV instruction subclass.
++ Added some tests for the DIV instruction subclass.
++ Added some Javadocs for each instruction subclass.
+* Modified some classes to comply with the style guide:
+ > Comply with alphabetical sorting of methods where appropriate.
+ > Comply with the additional blank space at the end of each file. 
+ > Scan variables in Translator.java now match with the variable names in each instruction subclass, and are given a more appropriate name.
+ > Comply with the code block indentation standard across all files.
+- Removed block comments from code blocks.
+
+Changelog for 1.0-alpha4:
++ Added and implemented the MUL instruction class.
++ Added some tests for the MUL instruction class.
+
+Changelog for 1.0-alpha3:
++ Added and implemented the SUB instruction class.
++ Added some tests for the SUB instruction class.
+* Fixed the MOV instruction class to allow referencing registers instead of just integers.
++ Added additional tests for the MOV class with register references instead of integers.
+* Renamed most test functions to be descriptive of what they actually check.
+* Added a few additional tests to existing test files.
+
+Changelog for 1.0-alpha2:
++ Added and implemented the MOV instruction class.
++ Added some tests for the MOV instruction class.
+
+Changelog for 1.0-alpha1:
++ Added Javadoc for the Labels class.
++ Explained what an Abstract class does plus its benefits.
++ Added Javadoc for the ADD instruction class.
++ Added Javadoc for the abstract instruction class.
++ Added a test for the ADD Instruction with a label.
++ Created empty files inside the sml/instruction folder in preparation for future development.
++ Added class for the OUT instruction.
