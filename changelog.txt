@@ -1,3 +1,9 @@
+Changelog for 1.0-alpha8:
++ Extended the hashCode() method in DivInstruction.
++ Extended the equals() method in DivInstruction.
++ Created some test cases for Div.
++ Created a joint test case for comparing Add and Div.
+
 Changelog for 1.0-alpha7:
 + Completed javadocs for the Instruction class.
 + Added a basic hashCode() method to Instruction.

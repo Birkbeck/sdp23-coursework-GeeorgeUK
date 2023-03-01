@@ -4,6 +4,8 @@ import sml.Instruction;
 import sml.Machine;
 import sml.RegisterName;
 
+import java.util.Objects;
+
 /**
  * <h1>DivInstruction</h1>
  * <p>A subclass of <b>Instruction</b>, a <b>division</b> or <b>DIV</b> instruction
@@ -55,5 +57,21 @@ public class DivInstruction extends Instruction {
   @Override
   public String toString() {
     return getLabelString() + getOpcode() + " " + source + " " + modifier;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(getLabel(), getOpcode(), this.source, this.modifier);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o instanceof DivInstruction other) {
+      return Objects.equals(this.getLabel(), other.getLabel())
+              && Objects.equals(this.getOpcode(), other.getOpcode())
+              && Objects.equals(this.source, other.source)
+              && Objects.equals(this.modifier, other.modifier);
+    }
+    return false;
   }
 }
