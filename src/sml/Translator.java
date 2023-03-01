@@ -96,8 +96,11 @@ public final class Translator {
         String modifier = scan();
         return new DivInstruction(label, Register.valueOf(source), Register.valueOf(modifier));
       }
-
-      // TODO: add code for all other types of instructions
+      case JnzInstruction.OP_CODE -> {
+        String source = scan();
+        String destination = scan();
+        return new JnzInstruction(label, Register.valueOf(source), destination);
+      }
 
       // TODO: Then, replace the switch by using the Reflection API
 
@@ -110,7 +113,6 @@ public final class Translator {
     }
     return null;
   }
-
 
   private String getLabel() {
     String word = scan();
