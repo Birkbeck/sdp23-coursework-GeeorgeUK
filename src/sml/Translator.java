@@ -77,6 +77,29 @@ public final class Translator {
       argument = null;
     }
 
+    // Use the opcode to access the class inside the /instruction/ package
+    String capitalisedOpcode = opcode.substring(0,1).toUpperCase() + opcode.substring(1);
+    String classLocation = "sml.instruction." + capitalisedOpcode + "Instruction";
+
+    // Check if the class exists. If it does not, we print Unknown instruction, plus the opcode.
+    Class<?> thisClass;
+    Object builtInstruction;
+
+    try {
+      // Here we get the class and constructor.
+      thisClass = Class.forName(classLocation);
+      Constructor<?>[] constructor = thisClass.getConstructors();
+
+      // TODO: Loop over each constructor and try to initialise.
+      //       Think about instructions with a single
+
+      return (Instruction) builtInstruction;
+    } catch (Exception ignored) {
+      System.out.println("Unknown instruction: " + opcode);
+      //error.printStackTrace();
+      return null;
+    }
+
     /* Old implementation using switch
     switch (opcode) {
       case AddInstruction.OP_CODE -> {
@@ -120,8 +143,6 @@ public final class Translator {
 
     // TODO: Next, use dependency injection to allow this machine class
     //       to work with different sets of opcodes (different CPUs)
-
-    return null;
   }
 
   private String getLabel() {
