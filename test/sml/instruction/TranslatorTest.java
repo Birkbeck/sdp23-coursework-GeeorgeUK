@@ -83,4 +83,18 @@ class TranslatorTest {
       Assertions.fail("Failed to read the program: " + currentPath + thisTest + ".sml");
     }
   }
+
+  @Test
+  void testExampleJnzFile() {
+    // Test to see if string inputs work properly, such as with JNZ checks.
+    String thisTest = "jnz";
+    try {
+      Translator translator = new Translator(currentPath + thisTest + ".sml");
+      translator.readAndTranslate(machine.getLabels(), machine.getProgram());
+      machine.execute();
+      Assertions.assertEquals(0, machine.getRegisters().get(EAX));
+    } catch (IOException error) {
+      Assertions.fail("Failed to read the program: " + currentPath + thisTest + ".sml");
+    }
+  }
 }
