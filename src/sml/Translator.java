@@ -114,6 +114,7 @@ public final class Translator {
           }
         } catch (Exception error) {
           try {
+
             // This catches instructions with an argument that is neither an integer nor a register.
             builtInstruction = constructor.newInstance(
                     label,
