@@ -96,12 +96,22 @@ public final class Translator {
 
       for (Constructor<?> constructor : constructors) {
         try {
-          // This catches instructions with no argument.
+          // This catches instructions with an integer as an argument.
+          assert argument != null;
           builtInstruction = constructor.newInstance(
                   label,
-                  Registers.Register.valueOf(source));
+                  Registers.Register.valueOf(source),
+                  Integer.valueOf(argument));
           return (Instruction) builtInstruction;
-        } catch (Exception ignored) {}
+        } catch (Exception error) {
+          try {
+            // This catches instructions with no argument.
+            builtInstruction = constructor.newInstance(
+                    label,
+                    Registers.Register.valueOf(source));
+            return (Instruction) builtInstruction;
+          } catch (Exception ignored) {}
+        }
       }
 
     } catch (Exception ignored) {
