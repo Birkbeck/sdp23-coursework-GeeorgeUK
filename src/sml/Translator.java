@@ -88,12 +88,22 @@ public final class Translator {
     try {
       // Here we get the class and constructor.
       thisClass = Class.forName(classLocation);
-      Constructor<?>[] constructor = thisClass.getConstructors();
+      Constructor<?>[] constructors = thisClass.getConstructors();
 
       // TODO: Loop over each constructor and try to initialise.
-      //       Think about instructions with a single
+      //       Think about instructions with a single argument, a register argument,
+      //       an integer argument, and an "other" argument.
 
-      return (Instruction) builtInstruction;
+      for (Constructor<?> constructor : constructors) {
+        try {
+          // This catches instructions with no argument.
+          builtInstruction = constructor.newInstance(
+                  label,
+                  Registers.Register.valueOf(source));
+          return (Instruction) builtInstruction;
+        } catch (Exception ignored) {}
+      }
+
     } catch (Exception ignored) {
       System.out.println("Unknown instruction: " + opcode);
       //error.printStackTrace();
@@ -143,6 +153,8 @@ public final class Translator {
 
     // TODO: Next, use dependency injection to allow this machine class
     //       to work with different sets of opcodes (different CPUs)
+
+    return null;
   }
 
   private String getLabel() {
