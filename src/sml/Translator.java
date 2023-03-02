@@ -95,13 +95,22 @@ public final class Translator {
       //       an integer argument, and an "other" argument.
 
       for (Constructor<?> constructor : constructors) {
+        // Using a nested try should prioritise instructions with registers or integers.
         try {
-          // This catches instructions with an integer as an argument.
           assert argument != null;
-          builtInstruction = constructor.newInstance(
-                  label,
-                  Registers.Register.valueOf(source),
-                  Integer.valueOf(argument));
+          try {
+            // This catches instructions with an integer as an argument.
+            builtInstruction = constructor.newInstance(
+                    label,
+                    Registers.Register.valueOf(source),
+                    Integer.valueOf(argument));
+          } catch (Exception error) {
+            // This catches instructions with another register as an argument.
+            builtInstruction = constructor.newInstance(
+                    label,
+                    Registers.Register.valueOf(source),
+                    Registers.Register.valueOf(argument));
+          }
           return (Instruction) builtInstruction;
         } catch (Exception error) {
           try {
