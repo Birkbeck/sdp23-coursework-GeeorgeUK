@@ -1,14 +1,11 @@
 package sml;
 
-import sml.instruction.*;
-
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.*;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Scanner;
-
-import static sml.Registers.Register;
 
 /**
  * <h1>Translator</h1>
@@ -52,6 +49,8 @@ public final class Translator {
     }
   }
 
+  //TODO: Amend the javadoc for this method.
+
   /**
    * Translates the current line into an instruction with the given label
    *
@@ -64,8 +63,21 @@ public final class Translator {
   private Instruction getInstruction(String label) {
     if (line.isEmpty())
       return null;
-
     String opcode = scan();
+
+    // Grab the source
+    String source = scan();
+
+    // Grab the argument, if it exists
+    String argument;
+    try {
+      argument = scan();
+    } catch (Exception error) {
+      error.printStackTrace();
+      argument = null;
+    }
+
+    /* Old implementation using switch
     switch (opcode) {
       case AddInstruction.OP_CODE -> {
         String source = scan();
@@ -101,18 +113,14 @@ public final class Translator {
         String destination = scan();
         return new JnzInstruction(label, Register.valueOf(source), destination);
       }
-
-      // TODO: Then, replace the switch by using the Reflection API
-      // (in part 2!)
-
-      // TODO: Next, use dependency injection to allow this machine class
-      //       to work with different sets of opcodes (different CPUs)
-      // (also a part 2 bit)
-
       default -> {
         System.out.println("Unknown instruction: " + opcode);
       }
-    }
+       */
+
+    // TODO: Next, use dependency injection to allow this machine class
+    //       to work with different sets of opcodes (different CPUs)
+
     return null;
   }
 
