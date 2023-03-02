@@ -91,42 +91,48 @@ public final class Translator {
       thisClass = Class.forName(classLocation);
       Constructor<?>[] constructors = thisClass.getConstructors();
 
-      // TODO: Loop over each constructor and try to initialise.
-      //       Think about instructions with a single argument, a register argument,
-      //       an integer argument, and an "other" argument.
-
+      // This catches instructions with an integer as an argument.
       for (Constructor<?> constructor : constructors) {
-        // Using a nested try should prioritise instructions with registers or integers.
         try {
-          try {
-            // This catches instructions with an integer as an argument.
-            assert Integer.parseInt(Objects.requireNonNull(argument)) != 0;
-            builtInstruction = constructor.newInstance(
-                    label,
-                    Registers.Register.valueOf(source),
-                    Integer.valueOf(argument));
-          } catch (Exception error2) {
-            // This catches instructions with another register as an argument.
-            builtInstruction = constructor.newInstance(
-                    label,
-                    Registers.Register.valueOf(source),
-                    Registers.Register.valueOf(argument));
-          }
-        } catch (Exception error) {
-          try {
+          assert Integer.parseInt(Objects.requireNonNull(argument)) != 0;
+          builtInstruction = constructor.newInstance(
+                  label,
+                  Registers.Register.valueOf(source),
+                  Integer.valueOf(argument));
+          return (Instruction) builtInstruction;
+        } catch (Exception ignored) {}
+      }
 
-            // This catches instructions with an argument that is neither an integer nor a register.
-            builtInstruction = constructor.newInstance(
-                    label,
-                    Registers.Register.valueOf(source),
-                    argument);
-          } catch (Exception error2) {
-            // This catches instructions with no argument.
-            builtInstruction = constructor.newInstance(
-                    label,
-                    Registers.Register.valueOf(source));
-          }
-        } return (Instruction) builtInstruction;
+      // This catches instructions with another register as an argument.
+      for (Constructor<?> constructor : constructors) {
+        try {
+          builtInstruction = constructor.newInstance(
+                  label,
+                  Registers.Register.valueOf(source),
+                  Registers.Register.valueOf(argument));
+          return (Instruction) builtInstruction;
+        } catch (Exception ignored) {}
+      }
+
+      // This catches instructions with an argument that is neither an integer nor a register.
+      for (Constructor<?> constructor : constructors ) {
+        try {
+          builtInstruction = constructor.newInstance(
+                  label,
+                  Registers.Register.valueOf(source),
+                  argument);
+          return (Instruction) builtInstruction;
+        } catch (Exception ignored) {}
+      }
+
+      // This catches instructions with no argument, such as the OUT instruction.
+      for (Constructor<?> constructor : constructors ) {
+        try {
+          builtInstruction = constructor.newInstance(
+                  label,
+                  Registers.Register.valueOf(source));
+          return (Instruction) builtInstruction;
+        } catch (Exception ignored) {}
       }
 
     } catch (Exception ignored) {
