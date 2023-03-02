@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.lang.reflect.*;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -97,30 +98,34 @@ public final class Translator {
       for (Constructor<?> constructor : constructors) {
         // Using a nested try should prioritise instructions with registers or integers.
         try {
-          assert argument != null;
           try {
             // This catches instructions with an integer as an argument.
+            assert Integer.parseInt(Objects.requireNonNull(argument)) != 0;
             builtInstruction = constructor.newInstance(
                     label,
                     Registers.Register.valueOf(source),
                     Integer.valueOf(argument));
-          } catch (Exception error) {
+          } catch (Exception error2) {
             // This catches instructions with another register as an argument.
             builtInstruction = constructor.newInstance(
                     label,
                     Registers.Register.valueOf(source),
                     Registers.Register.valueOf(argument));
           }
-          return (Instruction) builtInstruction;
         } catch (Exception error) {
           try {
+            // This catches instructions with an argument that is neither an integer nor a register.
+            builtInstruction = constructor.newInstance(
+                    label,
+                    Registers.Register.valueOf(source),
+                    argument);
+          } catch (Exception error2) {
             // This catches instructions with no argument.
             builtInstruction = constructor.newInstance(
                     label,
                     Registers.Register.valueOf(source));
-            return (Instruction) builtInstruction;
-          } catch (Exception ignored) {}
-        }
+          }
+        } return (Instruction) builtInstruction;
       }
 
     } catch (Exception ignored) {
