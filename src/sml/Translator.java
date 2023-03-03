@@ -85,11 +85,14 @@ public final class Translator {
       argument = null;
     }
 
+    // Get the factory and the provider
     BeanFactory factory = new ClassPathXmlApplicationContext("/beans.xml");
     OpcodeProvider provider = (OpcodeProvider) factory.getBean("provider");
 
-    //TODO: Update this line with the new opcode from the provider
-    String opcode = opcodePreTranslation;
+    // Using the provider from the factory, convert the opcode using getOpcode().
+    String opcode = provider.getOpcode(opcodePreTranslation);
+
+    //System.out.println(opcode + " (was " + opcodePreTranslation + ")");
 
     // Use the opcode to access the class inside the /instruction/ package
     String capitalisedOpcode = opcode.substring(0,1).toUpperCase() + opcode.substring(1);
@@ -150,7 +153,7 @@ public final class Translator {
 
     } catch (Exception error) {
       System.out.println("Unknown instruction: " + opcode);
-      //error.printStackTrace();
+      error.printStackTrace();
       return null;
     }
 
