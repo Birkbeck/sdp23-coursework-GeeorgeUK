@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans>
+  <!-- The default registers provided by the initial comment.-->
+  <bean id="defaultRegisters" class="sml.register.DefaultRegister"/>
+  <!-- Additional registers would be provided here. -->
+  <bean id="altRegisters" class="sml.register.AlternativeRegister"/>
+</beans>

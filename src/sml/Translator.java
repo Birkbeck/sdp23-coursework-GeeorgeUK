@@ -135,55 +135,15 @@ public final class Translator {
         } catch (Exception ignored) {}
       }
 
-    } catch (Exception ignored) {
+    } catch (Exception error) {
       System.out.println("Unknown instruction: " + opcode);
       //error.printStackTrace();
       return null;
     }
 
-    /* Old implementation using switch
-    switch (opcode) {
-      case AddInstruction.OP_CODE -> {
-        String source = scan();
-        String modifier = scan();
-        return new AddInstruction(label, Register.valueOf(source), Register.valueOf(modifier));
-      }
-      case OutInstruction.OP_CODE -> {
-        String source = scan();
-        return new OutInstruction(label, Register.valueOf(source));
-      }
-      case MovInstruction.OP_CODE -> {
-        String source = scan();
-        String modifier = scan();
-        return new MovInstruction(label, Register.valueOf(source), Integer.valueOf(modifier));
-      }
-      case SubInstruction.OP_CODE -> {
-        String source = scan();
-        String modifier = scan();
-        return new SubInstruction(label, Register.valueOf(source), Register.valueOf(modifier));
-      }
-      case MulInstruction.OP_CODE -> {
-        String source = scan();
-        String modifier = scan();
-        return new MulInstruction(label, Register.valueOf(source), Register.valueOf(modifier));
-      }
-      case DivInstruction.OP_CODE -> {
-        String source = scan();
-        String modifier = scan();
-        return new DivInstruction(label, Register.valueOf(source), Register.valueOf(modifier));
-      }
-      case JnzInstruction.OP_CODE -> {
-        String source = scan();
-        String destination = scan();
-        return new JnzInstruction(label, Register.valueOf(source), destination);
-      }
-      default -> {
-        System.out.println("Unknown instruction: " + opcode);
-      }
-       */
-
     // TODO: Next, use dependency injection to allow this machine class
     //       to work with different sets of opcodes (different CPUs)
+    //       [in progress]
 
     return null;
   }
