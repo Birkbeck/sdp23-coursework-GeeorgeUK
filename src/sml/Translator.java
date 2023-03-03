@@ -4,9 +4,17 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
+
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.beans.factory.support.PropertiesBeanDefinitionReader;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * <h1>Translator</h1>
@@ -18,6 +26,7 @@ import java.util.Scanner;
 public final class Translator {
 
   private final String fileName; // source file of SML code
+  private String beanPath = Paths.get("").toAbsolutePath().toString();
 
   // line contains the characters in the current line that's not been processed yet
   private String line = "";
@@ -76,8 +85,10 @@ public final class Translator {
       argument = null;
     }
 
-    // TODO: Convert the opcode using Dependency Injection to one our translator can understand.
+    BeanFactory factory = new ClassPathXmlApplicationContext("/beans.xml");
+    OpcodeProvider provider = (OpcodeProvider) factory.getBean("provider");
 
+    //TODO: Update this line with the new opcode from the provider
     String opcode = opcodePreTranslation;
 
     // Use the opcode to access the class inside the /instruction/ package
@@ -142,10 +153,6 @@ public final class Translator {
       //error.printStackTrace();
       return null;
     }
-
-    // TODO: Next, use dependency injection to allow this machine class
-    //       to work with different sets of opcodes (different CPUs)
-    //       [in progress]
 
     return null;
   }
