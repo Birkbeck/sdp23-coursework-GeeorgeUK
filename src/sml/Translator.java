@@ -1,20 +1,15 @@
 package sml;
 
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.*;
+import java.lang.reflect.Constructor;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
-
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
-import org.springframework.beans.factory.support.PropertiesBeanDefinitionReader;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * <h1>Translator</h1>
@@ -26,7 +21,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public final class Translator {
 
   private final String fileName; // source file of SML code
-  private String beanPath = Paths.get("").toAbsolutePath().toString();
 
   // line contains the characters in the current line that's not been processed yet
   private String line = "";
@@ -81,7 +75,6 @@ public final class Translator {
     try {
       argument = scan();
     } catch (Exception error) {
-      error.printStackTrace();
       argument = null;
     }
 
@@ -153,7 +146,6 @@ public final class Translator {
 
     } catch (Exception error) {
       System.out.println("Unknown instruction: " + opcode);
-      error.printStackTrace();
       return null;
     }
 

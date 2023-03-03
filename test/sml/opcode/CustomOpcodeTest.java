@@ -34,6 +34,7 @@ public class CustomOpcodeTest {
     try {
       Translator translator = new Translator(currentPath);
       translator.readAndTranslate(machine.getLabels(), machine.getProgram());
+      machine.execute();
       Assertions.assertEquals(16, machine.getRegisters().get(ECX));
     } catch (Exception error) {
       Assertions.fail("File did not exist");

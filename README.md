@@ -26,6 +26,11 @@ amongst other skills.
 Please do not forget to complete this part as too often we have "orphaned" repositories,
 which can require months to sort out.
 
+## ReadMe
+
+To run a test on part 2 with different opcodes, you must do the following:
+1.  Add an OpcodeProvider instance to the 
+
 ## The problem
 
 In this assignment you will write an interpreter for a simple machine language — `SML`. 

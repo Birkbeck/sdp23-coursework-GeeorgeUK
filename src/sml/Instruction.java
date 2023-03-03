@@ -51,11 +51,11 @@ public abstract class Instruction {
   }
 
   /*
-   <h1>Abstract Class</h1>
-   <p>An abstract class allows protection of certain attributes and methods in a class.
-   This is done for security reasons, as it can hide attributes we don't want people
-   to see in most situations while still allowing internal use of the data.</p>
-   @author gburto03
+  <h1>Abstract Class</h1>
+  <p>An abstract class allows protection of certain attributes and methods in a class.
+  This is done for security reasons, as it can hide attributes we don't want people
+  to see in most situations while still allowing internal use of the data.</p>
+  @author gburto03
   */
 
   /**
