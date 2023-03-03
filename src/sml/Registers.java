@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 public final class Registers {
   private final Map<Register, Integer> registers = new HashMap<>();
 
-  // Decoupling the register to the register package.
   public enum Register implements RegisterName {
     EAX, EBX, ECX, EDX, ESP, EBP, ESI, EDI
   }
