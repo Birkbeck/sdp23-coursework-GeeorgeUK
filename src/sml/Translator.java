@@ -62,7 +62,7 @@ public final class Translator {
   private Instruction getInstruction(String label) {
     if (line.isEmpty())
       return null;
-    String opcode = scan();
+    String opcodePreTranslation = scan();
 
     // Grab the source
     String source = scan();
@@ -75,6 +75,10 @@ public final class Translator {
       error.printStackTrace();
       argument = null;
     }
+
+    // TODO: Convert the opcode using Dependency Injection to one our translator can understand.
+
+    String opcode = opcodePreTranslation;
 
     // Use the opcode to access the class inside the /instruction/ package
     String capitalisedOpcode = opcode.substring(0,1).toUpperCase() + opcode.substring(1);
