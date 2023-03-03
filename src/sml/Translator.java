@@ -50,8 +50,6 @@ public final class Translator {
     }
   }
 
-  //TODO: Amend the javadoc for this method.
-
   /**
    * Translates the current line into an instruction with the given label
    *

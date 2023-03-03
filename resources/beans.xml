@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <beans>
-  <!-- The default registers provided by the initial comment.-->
-  <bean id="defaultRegisters" class="sml.register.DefaultRegister"/>
-  <!-- Additional registers would be provided here. -->
-  <bean id="altRegisters" class="sml.register.AlternativeRegister"/>
+  <!-- Redefine opcode instructions here -->
+  <bean id="add" class="sml.instruction.AddInstruction"/>
+  <bean id="div" class="sml.instruction.DivInstruction"/>
+  <bean id="jnz" class="sml.instruction.JnzInstruction"/>
+  <bean id="mov" class="sml.instruction.MovInstruction"/>
+  <bean id="mul" class="sml.instruction.MulInstruction"/>
+  <bean id="out" class="sml.instruction.OutInstruction"/>
+  <bean id="sub" class="sml.instruction.SubInstruction"/>
+
+  <!-- If additional instructions are added, insert the opcode
+    and the location of the Instruction class below. -->
+
+  <!-- Example for a read if not zero class could be this:
+    <bean id="rnz" class="sml.instruction.RnzInstruction"/>
+  -->
+
+  <!-- The provider is here. -->
+  <bean id="opcodeProvider" class="sml.OpcodesProvider">
+    <property name="opcodes" ref="defaultOpcodes"/>
+  </bean>
 </beans>
